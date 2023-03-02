@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-function App() {
+import React, {useState} from 'react';
+import Calendar from 'react-calendar';
 
-  const [days, setDays] = useState()
-  useEffect(() =>{
-    axios.get("http://localhost:5000/days")
-    .then(res =>{
-      setDays(res.data.days)
-      console.log(res.data.days)
-    })
-  }, [])
+function App() {
+const [date, setDate] = useState(new Date())
+
   return ( 
     <React.Fragment>
-      {days && days.map((day, idx) =>{
-        return <h4 key={idx}>{day}</h4>
-      })}
+      <h1>React Calendar</h1>
+      <div>
+
+      <Calendar onChange={setDate} value={date}/>
+      </div>
+      <div>
+        selected date: {date.toDateString()}
+      </div>
     </React.Fragment>
    );
 }
